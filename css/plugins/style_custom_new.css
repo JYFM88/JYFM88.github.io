@@ -1,0 +1,37 @@
+@font-face {
+  font-family: "custom_icon_new";
+  src: url("../font/custom_icon_new.eot");
+  src: url("../font/custom_icon_new.eot?kemdc4#iefix") format("embedded-opentype"),
+      url("../font/custom_icon_new.woff2?kemdc4") format("woff2"),
+      url("../font/custom_icon_new.woff?kemdc4") format("woff"),
+      url("../font/custom_icon_new.ttf?kemdc4") format("truetype"),
+      url("../font/custom_icon_new.svg?kemdc4#custom_icon_new") format("svg");
+  font-style: normal;
+  font-weight: 400;
+}
+
+.custom {
+  display: inline-block;
+  font-family: "custom_icon_new" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  vertical-align: -.125em;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+.custom-3::before {
+  content: "\ea01";
+}
+.custom-toutiao::before {
+  content: "\ea02";
+}
+.custom-weixin-1::before {
+  content: "\ea03";
+}
