@@ -1,3 +1,5 @@
+$toutiao-1: "\ea01";
+
 @font-face {
   font-family: "custome_icon";
   src: url("../font/custome_icon.eot");
@@ -5,7 +7,8 @@
   font-style: normal;
   font-weight: 400;
 }
-.toutiao {
+
+%toutiao {
   display: inline-block;
   font-family: "custome_icon" !important;
   font-style: normal !important;
@@ -14,11 +17,16 @@
   text-transform: none !important;
   speak: none;
   line-height: 1;
-  vertical-align: -0.125em;
+  vertical-align: -.125em;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.toutiao {
+  @extend %toutiao;
+}
+
 .toutiao-1::before {
   content: "\ea01";
 }
