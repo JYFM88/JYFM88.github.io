@@ -1,11 +1,11 @@
 @font-face {
   font-family: "custom_icon_new";
-  src: url("../font/custom_icon_new.eot");
-  src: url("../font/custom_icon_new.eot?kemdc4#iefix") format("embedded-opentype"),
-      url("../font/custom_icon_new.woff2?kemdc4") format("woff2"),
-      url("../font/custom_icon_new.woff?kemdc4") format("woff"),
-      url("../font/custom_icon_new.ttf?kemdc4") format("truetype"),
-      url("../font/custom_icon_new.svg?kemdc4#custom_icon_new") format("svg");
+  src: url("../../fonts/webfonts/custom_icon_new.eot");
+  src: url("../../fonts/webfonts/custom_icon_new.eot?kemdc4#iefix") format("embedded-opentype"),
+      url("../../fonts/webfonts/custom_icon_new.woff2?kemdc4") format("woff2"),
+      url("../../fonts/webfonts/custom_icon_new.woff?kemdc4") format("woff"),
+      url("../../fonts/webfonts/custom_icon_new.ttf?kemdc4") format("truetype"),
+      url("../../fonts/webfonts/custom_icon_new.svg?kemdc4#custom_icon_new") format("svg");
   font-style: normal;
   font-weight: 400;
 }
