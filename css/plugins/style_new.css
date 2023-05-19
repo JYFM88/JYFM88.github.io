@@ -1,0 +1,34 @@
+@font-face {
+  font-family: "new_icon";
+  src: url("../../fonts/webfonts/new_icon.eot");
+  src: url("../../fonts/webfonts/new_icon.eot?80fie1#iefix") format("embedded-opentype"),
+      url("../../fonts/webfonts/new_icon.woff2?80fie1") format("woff2"),
+      url("../../fonts/webfonts/new_icon.woff?80fie1") format("woff"),
+      url("../../fonts/webfonts/new_icon.ttf?80fie1") format("truetype"),
+      url("../../fonts/webfonts/new_icon.svg?80fie1#new_icon") format("svg");
+  font-style: normal;
+  font-weight: 400;
+}
+
+.custom {
+  display: inline-block;
+  font-family: "new_icon" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  vertical-align: -.125em;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+.custom-3::before {
+  content: "\ea01";
+}
+.custom-weixin-1::before {
+  content: "\ea02";
+}
