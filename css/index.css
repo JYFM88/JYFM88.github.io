@@ -742,7 +742,7 @@ html.is-animating .trm-swup-animation {
   color: var(--primary, #afb42b);
 }
 .trm-top-bar .container .trm-left-side .trm-logo-frame img {
-  width: 32px;
+  width: 120px;
   margin-right: 10px;
 }
 .trm-top-bar .container .trm-right-side {
