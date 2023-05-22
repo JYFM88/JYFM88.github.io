@@ -1,15 +1,10 @@
 @font-face {
   font-family: "custome_icon";
-  src: url("../../fonts/webfonts/custome_icon.eot");
-  src: url("../../fonts/webfonts/custome_icon.eot#iefix") format("embedded-opentype"),
-      url("../../fonts/webfonts/custome_icon.woff2") format("woff2"),
-      url("../../fonts/webfonts/custome_icon.woff") format("woff"),
-      url("../../fonts/webfonts/custome_icon.ttf") format("truetype"),
-      url("../../fonts/webfonts/custome_icon.svg#custome_icon") format("svg");
+  src: url("../font/custome_icon.eot");
+  src: url("../font/custome_icon.eot?23g730#iefix") format("embedded-opentype"), url("../font/custome_icon.woff2?23g730") format("woff2"), url("../font/custome_icon.woff?23g730") format("woff"), url("../font/custome_icon.ttf?23g730") format("truetype"), url("../font/custome_icon.svg?23g730#custome_icon") format("svg");
   font-style: normal;
   font-weight: 400;
 }
-
 .toutiao {
   display: inline-block;
   font-family: "custome_icon" !important;
@@ -19,13 +14,11 @@
   text-transform: none !important;
   speak: none;
   line-height: 1;
-  vertical-align: -.125em;
+  vertical-align: -0.125em;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-
-.toutiao-1:before {
+.toutiao-1::before {
   content: "\ea01";
 }
