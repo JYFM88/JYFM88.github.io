@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"></meta>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<style type="text/css">
+	body {
+		backgroud-color: LightGoldenrodYellow;
+		width:80%;
+		margin:0 auto;
+	}
+	h1 {
+		color : black;
+		text-align: center;
+	}
+	h2 {
+		font-size: 24px;
+		font-weight: normal
+	}
+	p {
+		font-family: arial, helvetica, sans-serif;
+		font-size: 15px;
+		color:rgb(73, 73, 73);
+		text-indent:2em;
+	}
+	.scale img{
+		background-size:cover;
+		width:auto;
+		height: auto;
+		max-width:100%;
+	}
+	.mtop20 { margin-top: 20px; }
+	.container {background: repeat-y left top;}
+	.leftColumn {float:left;min-height:500px;width:50%;}
+	.rightColumn {float:right;min-height:500px;width:50%}
+	.footer {clear:both;float:left;width:100%}
+	.all_srk_1 {
+	    background-color: #FFF;
+	    color: #4b3d3d;
+	    height: 30px;
+	    padding-left: 4px;
+	    border: 1px solid #a9a9a9;
+	    -moz-border-radius: 5px;
+	    -webkit-border-radius: 5px;
+	    border-radius: 5px
+	}
+	.all_an_1,.all_an_1:link,.all_an_1:visited {
+	    border: 1px solid #12afff;
+	    background-image: url(//f.bmcx.com/img/all_bg.png?v=20050301);
+    	background-repeat: repeat-x;
+    	background-position: 0 -319px;
+    	color: #FFF;
+    	cursor: pointer;
+    	height: 23px;
+    	line-height: 23px;
+    	display: inline-block;
+    	padding-top: 0;
+    	padding-right: 5px;
+    	padding-bottom: 0;
+    	padding-left: 5px;
+    	margin: 0;
+    	-moz-border-radius: 3px;
+    	-khtml-border-radius: 3px;
+    	-webkit-border-radius: 3px;
+    	border-radius: 3px
+	}
+</style>
+</head>
+<body>
+	<h1 class="mtop20">B超胎儿体重计算器</h1>
+	<div class = "container">
+		<div class = "leftColumn" id="lefttable"><h3><br>请输入您的B超数据<br><br></h3>
+			<table width="95%" style="max-width:410px" border="0" cellpadding="8" cellspacing="1" bgcolor="#C5D5C5" id="bchaotable">
+				<tbody>
+					<tr>
+						<td bgcolor="#F5F5F5" align="center">
+							BPD
+							<div style="display:inline">：</div>
+						</td>
+						<td bgcolor="#FFFFFF">
+							<input type="text" style="width:100px" class="all_srk_1"> 厘米(cm)
+						</td>
+					</tr>
+					<tr>
+        	            <td bgcolor="#F5F5F5" align="center">
+        	                HC
+        	            <div style="display:inline">：</div>
+						</td>
+						<td bgcolor="#FFFFFF">
+							<input type="text" style="width:100px" class="all_srk_1"> 厘米(cm)
+							</td>
+						</tr>
+						<tr>
+                            <td bgcolor="#F5F5F5" align="center">
+                                AC
+                            	<div style="display:inline">：</div>
+                            </td>
+                            <td bgcolor="#FFFFFF">
+                                <input type="text" style="width:100px" class="all_srk_1"> 厘米(cm)
+                            </td>
+                        </tr>
+					<tr>
+                        <td bgcolor="#F5F5F5" align="center">
+                            FL
+                            <div style="display:inline">：</div>
+                        </td>
+                        <td bgcolor="#FFFFFF">
+                            <input type="text" style="width:100px" class="all_srk_1"> 厘米(cm)
+                        </td>
+                    </tr>
+					<tr>
+						<td colspan="2" bgcolor="#FFFFFF" align="center">
+							<input id="ss_anniu" type="button" value="进行计算" onclick="computer()">
+							<img id="ss_jiazai" src="//f.bmcx.com/img/loading_3.gif" style="display:none">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class = "rightColumn">
+			<h3 id="weightid"></h3>
+      		<div id="weight_distribution"></div>
+			<p id="zhujie"></p>
+    		<script>
+        		function computer(){
+            		var table = document.getElementById('lefttable');
+        		    var items = table.getElementsByTagName('input');
+        			var bpd=parseFloat(items[0].value);
+        		    var hc=parseFloat(items[1].value);
+            		var ac=parseFloat(items[2].value);
+            		var fl=parseFloat(items[3].value);
+            		var y=(1.07*bpd**3+0.3*ac**2*fl)/1000;
+            		var demoP=document.getElementById("weightid");
+            		demoP.innerHTML='<b><br>估计的胎儿体重：</b><p style="color:darkred;display:inline;">'+y.toFixed(3)+'Kg</p>';
+            		var cal_all_weight=[]
+            		cal_all_weight[0]=(10**(1.304 + 0.05281*ac + 0.1938*fl - 0.004*ac*fl))/1000;
+					cal_all_weight[1] = (10**(1.335 - 0.0034*ac*fl + 0.0316*bpd + 0.0457*ac + 0.1623*fl))/1000;
+					cal_all_weight[2] = (10**(1.326 - 0.00326*ac*fl +0.0107*hc + 0.0438*ac + 0.158*fl))/1000;
+					cal_all_weight[3] = (10**(1.3596 - 0.00386*ac*fl + 0.0064*hc + 0.00061*bpd*ac + 0.0424*ac + 0.174*fl))/1000;
+            		cal_all_weight[4] = ((0.23718 * ac**2 * fl) + (0.03312 * hc**3))/1000;
+					cal_all_weight[5] = (1000*10**(0.166*bpd + 0.046*ac - 0.00246*bpd*ac - 1.7492))/1000;
+					cal_all_weight[6] = (1000*10**(0.144*bpd+0.032*ac - 0.000111*bpd**2*ac - 1.599))/1000;
+					cal_all_weight[7] = (1000*10**(0.095*bpd + 0.0377*ac - 0.0015*bpd*ac - 1.1683))/1000;
+					cal_all_weight[8] =(9.337*bpd*ac-299.076)/1000;
+					cal_all_weight[9] = (1000*Math.exp(0.282*ac - 0.00331*ac**2 - 4.564))/1000;
+					cal_all_weight[10] = (1000*(10**(0.211*bpd + 0.057*ac - 0.00403*bpd*ac - 2.104)))/1000;
+					cal_all_weight[11] = (Math.exp(2.695 + 0.253*ac - 0.00275*ac**2))/1000;
+					cal_all_weight[12] = (10**(1.182 + 0.0273*hc + 0.07057*ac - 0.00063*ac**2 - 0.0002184*hc*ac))/1000;
+					cal_all_weight[13] = (10**(1.3598 + 0.051*ac + 0.1844*fl - 0.0037*ac*fl))/1000;
+					cal_all_weight[14] = (10**(1.4787 - 0.003343*ac*fl + 0.001837*bpd**2 + 0.0458*ac + 0.158*fl))/1000;
+					cal_all_weight[15] = (10**(1.5662 - 0.0108*hc + 0.0468*ac + 0.171*fl + 0.00034*hc**2 - 0.003685*ac*fl))/1000;
+					cal_all_weight[16] = (10**(1.5115 + 0.0436*ac + 0.1517*fl - 0.00321*ac*fl + 0.0006923*bpd*hc))/1000;
+					cal_all_weight[17] = (-2003.16 + 129.2264*ac + 0.8323*ac**2)/1000;
+					cal_all_weight[18] = (2286.7453 - 327.6652*ac + 16.6407*ac**2 - 0.1785*ac**3)/1000;
+					cal_all_weight[19] = (10**(2.3860 + 0.0336*ac))/1000;
+					cal_all_weight[20] = (10**(1.4613 + 0.0982*ac - 0.0011*ac**2))/1000;
+					cal_all_weight[21] = (10**(0.6328 + 0.1881*ac - 0.0043*ac**2 + 3.6239*10**(-5)*ac**3))/1000;
+					cal_all_weight[22] = (-1382.8578 + 76.7507*ac + 1.5057*ac**2)/1000 ;
+					cal_all_weight[23] = (7817.7728 - 917.1788*ac + 36.4041*ac**2 - 0.3999*ac**3)/1000;
+					cal_all_weight[24] = (10**(2.2456 + 0.0363*ac))/1000;
+					cal_all_weight[25] = (10**(1.2468 + 0.1076*ac - 0.0012*ac**2))/1000;
+					cal_all_weight[26] = (10**(2.3660 - 0.0061*ac + 0.002588*ac**2 - 4.1*10**(-5)*ac**3))/1000;
+					cal_all_weight[27] = (-3036.4968 + 175.6913*ac + 44.3874*bpd)/1000;
+					cal_all_weight[28] = (-2985.89 + 176.3034*ac + 48.4669*bpd - 0.346*ac*bpd)/1000;
+					cal_all_weight[29] = (10**(2.1945 + 0.026*ac + 0.0484*bpd))/1000;
+					cal_all_weight[30] = 10**(-1.1683 + 0.0377*ac + 0.0950*bpd - 0.0015*bpd*ac );
+					cal_all_weight[31] = (-2835.0183 + 178.922*ac - 2.7649*hc)/1000;
+					cal_all_weight[32] = (-56.6916 + 76.4437*ac - 82.9971*hc + 3.1292*ac*hc)/1000;
+					cal_all_weight[33] = (10**(2.3122 + 0.0301*ac + 0.005*hc))/1000;
+					cal_all_weight[34] = (10**( 0.9119 + 0.0488*hc + 0.0824*ac - 0.001599*hc*ac))/1000;
+					cal_all_weight[35] = (-2667.57 + 183.1045*ac - 12.6385*hc +22.8608*bpd)/1000;
+					cal_all_weight[36] = (10**(2.3231 + 0.02904*ac + 0.0079*hc - 0.0058*bpd))/1000;
+					cal_all_weight[37] = (10**(1.13 + 0.18*bpd + 0.05*ac - 3.35*10**(-3)*bpd*ac))/1000;
+					cal_all_weight[38] = (10**(1.63 + 0.16*bpd + 1.11*10**(-3)*ac**2 - 8.59*10**(-5)*bpd*ac**2))/1000;
+					cal_all_weight[39] = (10**(0.59 + 0.28*fl + 0.08*ac - 7.16*10**(-3)*fl*ac))/1000;
+					cal_all_weight[40] = (10**(1.14 + 0.16*bpd + 0.05*ac - 2.80*10**(-3)*bpd*ac + 0.04*fl - 4.9*10**(-4)*fl*ac))/1000;
+					cal_all_weight[41] = (10**(1.63 + 0.15*bpd + 1.02*10**(-3)*ac**2 - 7.91*10**(-5)*bpd*ac**2 + 0.02*fl))/1000;
+					cal_all_weight[42] = (10**(1.63 + 0.15*bpd + 1.02*10**(-3)*ac**2 - 7.66*10**(-5)*bpd*ac**2 + 0.03*fl - 3.20*10**(-6)*fl*ac**2))/1000;
+					cal_all_weight[43] = (10**(1.54 + 0.15*bpd + 1.11*10**(-3)*ac**2 - 7.64*10**(-5)*bpd*ac**2 + 0.05*fl - 9.92*10**(-4)*fl*ac))/1000;
+        			var trace = {
+	    				x: cal_all_weight,
+	    				type: 'histogram'
+	  				};
+      				var data = [trace];
+					var layout = {
+						xaxis: {
+    						title: '胎儿体重（Kg）'
+						},
+						yaxis: {
+							title: '公式数'
+						},
+						autosize: false,
+						width: 600,
+						height: 300,
+        				title: '文献中提供的一些公式估计的体重'
+					}
+					Plotly.newPlot('weight_distribution', data, layout);
+					var izhujie=document.getElementById("zhujie");
+					izhujie.innerHTML='我从文献中搜索了40多个公式，根据您提供的B超数据，利用这些公式评估了一下您胎儿的体重，并且画了一个直方图，柱子越高，说明预测对应体重的公式越多，您胎儿的体重可能大概也就在这个区间';
+				}
+        	</script>
+		</div>
+	</div>
+	<h1 class="mtop20">如何估计胎儿体重</h1>
+	<p>孕妈妈们孕期最关心的一个问题是肚子里的宝宝长的怎么样，胖还是瘦啊。那如何估计胎儿的体重呢？在孕妇常规产检的时候，产科医生会拿着一个皮尺，测量孕妇的宫高和腹围，医生可以根据宫高和腹围大致估算胎儿的大小，但是这个估计跟胎儿实际的体重可能偏差比较大。比较准确的方法是通过B超估计。孕妇在做腹部超声的时候，一般会在报告中发现四个值，分别是BPD（双顶径）、HC（头围）、AC（腹围）、FL（股骨长）。这四个值可以大概锚定胎儿的大小，不同的研究机构给出了不同的公式（公式怎么来的呢？步骤大概是这样，研究机构会搜集一些数据，这些数据是胎儿出生前三天之内的B超数据，我们记为X，一般都是要求三天内，再早的数据误差就大了，胎儿出生后的体重，我们记为Y，然后估计一个公式我们记为F，希望Y=F(X)，如果Y和F(X)越接近，那么公式就越好），有的采用四个值中的某一个值计算，有些采用多个，一般情况下采用多个值的公式跟实际的体重更接近。我搜集了文献中的公式，以及医院中用到的公式，弄了一个小程序，大家可以输入自己的B超数据，然后就能得到文献里公式估算的体重以及医院公式估算的体重</p>
+	<div align="center" class="scale"><img src="../img/Bchao.png" vertical-align="middle"></img></div>
+</body>
+</html>
+
+
+
